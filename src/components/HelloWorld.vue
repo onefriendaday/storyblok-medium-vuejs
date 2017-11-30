@@ -1,9 +1,6 @@
 <template>
   <div class="hello">
-    
-    <template v-for="blok in story.content.body">
-      <component  :blok="blok" :is="blok.component"></component>
-    </template>
+    <component :blok="story.content" :is="story.content.component"></component>
 
     <h2>Essential Links</h2>
     <ul>
@@ -49,7 +46,7 @@ data () {
         this.getStory('published')
       }
     })
-    
+
     // register on change event which will
     // be triggered as soon someone clicks on "save"
     // the Storyblok compose interface.
@@ -60,7 +57,7 @@ data () {
 methods: {
   getStory (version) {
     this.$storyblok.get({
-      slug: 'home', 
+      slug: window.location.pathname,
       version: version
     }, (data) => {
       // default value for story
